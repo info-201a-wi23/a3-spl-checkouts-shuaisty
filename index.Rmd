@@ -5,7 +5,7 @@ output: html_document
 
 ### Introduction
 
-n introduction of the data and a description of the trends/books/items you are choosing to analyze (and why!)
+An introduction of the data and a description of the trends/books/items you are choosing to analyze (and why!)
 
 ### Summary Information
 
