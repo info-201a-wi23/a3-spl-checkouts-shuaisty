@@ -3,84 +3,98 @@ title: "A3: SPL Library Checkouts"
 output: html_document
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE, include=TRUE}
+source("summary.R")
+
+library(knitr)
+```
+
+
 ### Introduction
 
-An introduction of the data and a description of the trends/books/items you are choosing to analyze (and why!)
+I decided to use the 2013-2023-5-Checkouts-SPL.csv file which contains data on checkouts of materials with frequencies of at least 5 times a month from the Seattle Public Library system from 2013 to 2023. The data is organized by year, month, format, and title of the item, and includes information on the number of checkouts.
+
+To analyze this data, I will focus on trends in checkouts. Specifically, I will look at the difference in checkout totals in different years as well as the most checked out Material type such Atlas, Books and DVDs, etc. I will also look at the numbers of physical versus digital items by year to see if there are any notable patterns or trends in the types of material that are popular in different years and seeing the trend of the rise of technology overtime.
+
+I think analyzing trends in checkouts is useful because it can provide insights into reading habits and interests in the Seattle community over time. By examining which material types are consistently popular, as well as which books are popular in different years, we can gain a better understanding of the types of books and items that are likely to be of interest to library patrons in Seattle. This information can be used to inform collection development decisions and help ensure that the library has a diverse and engaging collection of books that meets the needs and interests of its patrons.
 
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
+After taking a look at some values I was interested in, I found that the most checked out item in 2013 has been checked out 4891 times but unfortunately the item or title is unknown. However, the second most checked out item is a video recording called Argo by Warner Bros with a total checkout count with 4649 times. In 2022, the most checked out title is headphones with a checkout count of 19,040 times. I also calculated the average number of checkouts per year over the 10 year period and found the value to be 4,623,897 which ii found surprising because it was much higher than expected. The year with the most checkouts which is another value was interested in was 2013 and I'm not too surprised as I figured the trend over time would decline with the improvements in technology. This also leads to my next value which is the difference between checkout counts in the 10 years which I found the number to be 5,134,210. I think this number really shows how the library usage over time has dwindles as less people use it due to the accessibility of books, article and magazines on their computers, tablets and phones. Finally, I was also interested in seeing what was the most checked out item during the time period which I found it to be mobile hot spot sponsored by T-mobile with a checkout count of 31,140 times.
 
-These will likely be calculated using your DPLYR skills, answering questions such as:
 
-- What is the average number of checkouts for each item?
-- What is the month or year with the most/least checkouts for a book that you're interested in?
-- What is the month or year with the most/least checkouts for ebooks?
-- How has the number of print book checkouts changed over time?
+### Value 1
+- Most checked out item for the year 2013 and year 2022.
 
-Feel free to calculate and report values that you find relevant.
+```{r echo=FALSE}
+most_checked_out_2013
+most_checked_out_2022
+```
+
+### Value 2
+- Average number of checkouts per year.
+
+```{r echo=FALSE}
+avg_checkouts_per_year
+```
+
+### Value 3
+- Which year between 2013-2022 had the most amount of check outs.
+
+```{r echo=FALSE}
+year_with_most_checkouts
+```
+
+### Value 4
+- The difference in checkout numbers between the years of 2013-2023.
+
+```{r echo=FALSE}
+checkout_diff
+```
+
+### Value 5
+- Most checked out item.
+
+```{r echo=FALSE}
+most_checked_out_item
+```
+
 
 ### The Dataset
 
-- Who collected/published the data?  
-- What are the parameters of the data (dates, number of checkouts, kinds of books, etc.)?
-- How was the data collected or generated?  
-- Why was the data collected?  
-- What, if any, ethical questions do you need to consider when working with this data?  
-- What are possible limitations or problems with this data?   (at least 200 words)
+This data set is published by the Seattle Public Library on the Seattle Open Data Portal. This data set containes data on Usage class such as Physical or digital, checkout type such as regular, special or inter library loan, material tye such as formats of the item such as book, audio book, DVD or CD, checkout year, checkout month, title of items, creator, subject, publisher and published year. This data set is collected and generated by SPL and includes all checkouts for physical and digital items from January 1, 2013 to present and is completely anonymized as it does not include any personal information.The data was collected by the Seattle Public Library to provide information about the usage of library materials to help with collection development, budgeting, and planning. The data can also be used to analyze reading and borrowing trends, popular authors and titles, and to understand how library patrons are using different types of materials over time. Some ethical questions we would need to keep in mind when considering this data set are privacy, bias, data ownership and the context of the data to make sure no individual's data is shared without permission and to get a good understanding of the data before analyzing it.
+
+While the "Checkouts by Title" data set on data.seattle.gov is a valuable resource for anyone interested in library circulation patterns in the Seattle area, there are several limitations and problems that should be taken into consideration when working with this data. First, the data set only includes checkouts from the Seattle Public Library system, and therefore does not reflect library usage outside of this system. This means that any conclusions drawn from the data may not be representative of library usage as a whole in the Seattle area. Second, the data set only includes records from physical materials and digital formats, which means that any usage of other library services such as in-person visits or reference consultations are not reflected in the data. This may limit the conclusions that can be drawn about how library services are being used. Third, there is some missing information in the data set, particularly in the "MaterialType" field where there are a significant number of records with the value "UNKNOWN". This limits our ability to accurately analyze usage patterns by material type. Finally, it is important to consider the ethical implications of using this data, particularly in regards to patron privacy. While the data set does not contain personally identifiable information, it is still important to ensure that any analysis or conclusions drawn from the data do not compromise privacy or confidentiality.
+
+
+
 
 
 ### First Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
-
-The first chart that you will create and include will show the trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, warning = FALSE, code = readLines("chart1_example.R")}
+```{r echo=FALSE, message=FALSE}
+trend_over_time
 ```
+
+In the chart above, I intend to show the total checkout counts of books specifically to see the dwindle in book checkouts over time. As the line graph shows, the checkout counts of books have fluctuated frequently but we can see a big dip from 2018-2019 until 2021. This could be cause by many different factors with one being the improvements of technology and accessibility of any reading material on our personal devices such as a computer, tablets or phone. Another very important factor that could've caused the fall in checkout numbers is the emergence of the COVID-19 pandemic as this forced many of us to stay hoe and not go into public spaces such as a library. One interesting aspect of this graph I noticed is that there was a sharp increase in checkout numbers in between 2021-2022 but right after that the numbers dropped again. Assuming the year 2023 has concluded, then I would be interested in what caused the fall but considering the year has just started, it makes sense for the 2023 checkout numbers to be on the lower side.
 
 ### Second Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
-
-The second chart that you will create and include will show another trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+UsageClass_Barchart
 ```
 
-### Your Choice
+I made this bar chart because I wanted to see the difference in physical versus digital items being checkout over time and I think it shows some important information for us to see the change from physical world to digital. As we can see on the chart, the total number of physical items have gone down between 2013-2019 and we can also see that the digital item checkouts are increasing. Especially during the year 2020, there is clear evidence that digital items have more checkouts as the chart has a longer red color indicating digital compared to physical chart which is indicated by a blue color.
 
-The last chart is up to you. It could be a line plot, scatter plot, histogram, bar plot, stacked bar plot, and more. Here are some requirements to help guide your design:
+### Pie Chart
 
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
+```{r echo=FALSE}
+MaterialType_Piechart
 ```
 
+This pie chart shows a clear contrast and overall usage of the library for its different checkout items. There are a total of 48 checkout types for material such as Atlas, books, audio books, etc and looking at the pie chart we can see that books are one of the most check out items followed by video disc and Ebooks. One thing I noticed that was interesting is that there are so many forms of material types in the library catalog even if its similar conceptually such as the video category. for example, there are 6 sub categories just for Videos but they all account for a different part of the chart which makes me wonder, if all of these categories are simplified, then would a certain category have more checkouts than the other.
 
