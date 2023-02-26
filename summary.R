@@ -1,4 +1,4 @@
-spl_data <- read.csv("2013-2023-5-Checkouts-SPL.csv")
+spl_data <- read.csv("/Users/shuailavielle/Desktop/Info201/2013-2023-5-Checkouts-SPL.csv")
 
 library(ggplot2)
 library(dplyr)
@@ -89,7 +89,8 @@ trend_over_time
 # Variable Comparison Chart
 # Trends of UsageClass overtime such as Digital and Physical (Bar Chart)
 
-checkouts <- read.csv("2013-2023-5-Checkouts-SPL.csv")
+# checkouts <- read.csv("2013-2023-5-Checkouts-SPL.csv")
+checkouts <- spl_data
 
 # Create a bar chart of UsageClass over time
 UsageClass_Barchart <- ggplot(checkouts, aes(x = CheckoutYear, fill = UsageClass)) + 
